@@ -1,0 +1,16 @@
+{
+  "index": "Introduction",
+  "easy": "Easy Leetcode Solutions",
+  "medium": "Medium Leetcode Solutions",
+  "hard": "Hard Leetcode Solutions",
+  "about": {
+    "title": "About",
+    "type": "page"
+  },
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "https://google.com/",
+    "newWindow": true
+  }
+}
