@@ -1,0 +1,60 @@
+## Validate Parentheses (Easy) 🎯
+
+#### Problem statement
+You are given a string s consisting of the following characters: '(', ')', '{', '}', '[' and ']'.
+The input string s is valid if and only if:
+Every open bracket is closed by the same type of close bracket.
+Open brackets are closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+Return true if s is a valid string, and false otherwise.
+#### Examples
+```
+Example 1:
+Input: s = "[]"
+Output: true
+Example 2:
+Input: s = "([{}])"
+Output: true
+Example 3:
+Input: s = "[(])"
+Output: false
+Explanation: The brackets are not closed in the correct order.
+```
+#### Constraints:
+```
+1 <= s.length <= 1000
+```
+#### Solution
+```cpp
+class Solution {
+public:
+
+    bool isMatching(char a , char b)
+    {
+        if( a == ')' && b == '(' ) return true;
+        else if( a == '}' && b == '{' ) return true;
+        else if( a == ']' && b == '[' ) return true;
+        return false;
+    }
+
+    bool isValid(string s) {
+        if( s[0] == ')' || s[0] == '}' || s[0] == ']') return false;
+
+        stack<int> stack;
+        int size = s.length();
+        for( auto it : s )
+        {
+            if ( it == '(' || it == '{' || it == '[' ) 
+            stack.push(it);
+            else if( it == ')' || it == '}' || it == ']'  )
+            {
+                if( stack.empty() ) return false;
+                if( isMatching(it ,stack.top()) ) stack.pop();
+                else return false;
+            }
+        }
+        if( stack.empty() ) return true;
+        return false;
+    }
+};
+```
