@@ -22,14 +22,14 @@ s may consist of printable ASCII characters.
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        unordered_map<int,int> map;
-        int j = 0 , maxLen = 0;
-        for(int i = 0; i < s.length(); i++){
-            if(map.count(s[i]) && map[s[i]] >= j){
-                j = map[s[i]]+1;
+        vector<char> asci(255,-1);
+        int maxLen = 0 ,j = 0;
+        for(int i = 0; i < s.size(); i++){
+            if(asci[s[i]] != -1 && asci[s[i]] >= j){
+                j = asci[s[i]]+1;
             }
             maxLen = max(maxLen,i-j+1);
-            map[s[i]] = i;
+            asci[s[i]] = i;
         }
         return maxLen;
     }
