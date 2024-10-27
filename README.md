@@ -1,2 +1,2 @@
 ## NEECODE BLIND 75 
-[click here](https://jyashcs.vercel.app/)
+<a href="https://jyashcs.vercel.app/" target="_blank">click here</a>
