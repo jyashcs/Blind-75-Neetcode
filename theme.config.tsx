@@ -4,14 +4,14 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   logo: <span>My Project</span>,
   project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
+    link: 'https://github.com/jyashcs',
   },
   chat: {
-    link: 'https://discord.com',
+    link: 'https://google.com',
   },
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
+  docsRepositoryBase: 'https://google.com',
   footer: {
-    text: 'Nextra Docs Template',
+    text: 'Learn Algo',
   },
 }
 
