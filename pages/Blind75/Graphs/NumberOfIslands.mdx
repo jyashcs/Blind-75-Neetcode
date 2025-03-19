@@ -1,0 +1,107 @@
+#### Number of Islands 🎯
+
+##### Medium 🤨
+
+#### Problem Statement
+Given a 2D grid grid where '1' represents land and '0' represents water, count and return the number of islands.
+An island is formed by connecting adjacent lands horizontally or vertically and is surrounded by water. You may assume water is surrounding the grid (i.e., all the edges are water).
+
+#### Examples
+
+```
+Example 1:
+Input: grid = [
+    ["0","1","1","1","0"],
+    ["0","1","0","1","0"],
+    ["1","1","0","0","0"],
+    ["0","0","0","0","0"]
+  ]
+Output: 1
+```
+```
+Example 2:
+Input: grid = [
+    ["1","1","0","0","1"],
+    ["1","1","0","0","1"],
+    ["0","0","1","0","0"],
+    ["0","0","0","1","1"]
+  ]
+Output: 4
+```
+#### Constraints
+```
+1 <= grid.length, grid[i].length <= 100
+grid[i][j] is '0' or '1'.
+```
+
+#### Recommended Time & Space Complexity
+```
+You should aim for a solution with O(m * n) time and O(m * n) space, where m is the number of rows and n is the number of columns in the grid.
+```
+
+#### Hint 1
+```
+An island is a group of 1's in which every 1 is reachable from any other 1 in that group.
+Can you think of an algorithm that can find the number of groups by visiting a group only once?
+Maybe there is a recursive way of doing it.
+```
+
+#### Hint 2
+```
+We can use the Depth First Search (DFS) algorithm to traverse each group independently. We iterate through each cell of the grid. When we encounter a 1, we perform a DFS starting at that cell and recursively visit every other 1 that is reachable. During this process, we mark the visited 1's as 0 to ensure we don't revisit them, as they belong to the same group. The number of groups corresponds to the number of islands.
+```
+
+#### Solution
+
+```cpp
+class Solution {
+public:
+    
+    void bfs(int row, int cln, vector<vector<bool>>& visited, vector<vector<char>>& grid){
+        int n = grid.size();
+        int m = grid[0].size();
+
+        visited[row][cln] = true;
+
+        queue<pair<int,int>> q;
+        q.push({row,cln});
+
+        int delrow[] = {-1,1,0,0};
+        int delcln[] = {0,0,-1,1};
+
+        while(!q.empty()){
+            int nrow = q.front().first;
+            int ncln = q.front().second;
+            q.pop();
+
+            for(int i = 0; i < 4; i++){
+                int r = nrow + delrow[i];
+                int c = ncln + delcln[i];
+
+                if(r >= 0 and r < n and c >= 0 and c < m and !visited[r][c] and grid[r][c] == '1'){
+                    visited[r][c] = true;
+                    q.push({r,c});
+                }
+            }
+        }
+
+    }
+
+    int numIslands(vector<vector<char>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+
+        int count = 0;
+        vector<vector<bool>> visited(n , vector<bool>(m,false));
+        for(int row = 0; row < n; row++){
+            for(int cln = 0; cln < m; cln++){
+                if(!visited[row][cln] and grid[row][cln] == '1'){
+                    count++;
+                    bfs(row,cln,visited,grid);
+                }
+            }
+        }
+        return count;
+    }
+};
+```
